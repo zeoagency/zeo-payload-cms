@@ -1,0 +1,290 @@
+import type { GlobalConfig } from 'payload'
+import {
+  HeroBlock,
+  ServicesBlock,
+  CaseStudiesBlock,
+  TestimonialsBlock,
+  ResourcesBlock,
+  InternationalBlock,
+  EventEuropaBlock,
+  OtherServicesBlock,
+} from '../blocks'
+
+export const Homepage: GlobalConfig = {
+  slug: 'homepage',
+  admin: {
+    group: 'Pages',
+  },
+  access: {
+    read: () => true,
+  },
+  fields: [
+    {
+      name: 'layout',
+      type: 'blocks',
+      blocks: [
+        HeroBlock,
+        ServicesBlock,
+        CaseStudiesBlock,
+        TestimonialsBlock,
+        ResourcesBlock,
+        InternationalBlock,
+        EventEuropaBlock,
+        OtherServicesBlock,
+      ],
+    },
+    {
+      type: 'group',
+      name: 'hero',
+      label: 'Hero Section (Legacy)',
+      admin: {
+        description: 'Deprecated: Use Lexical Blocks Layout instead',
+        readOnly: true,
+        hidden: true,
+      },
+      fields: [
+        { name: 'title', type: 'text', localized: true },
+        { name: 'subtitle', type: 'text', localized: true },
+        { name: 'description', type: 'textarea', localized: true },
+        { name: 'phoneNumber', type: 'text' },
+        { name: 'image', type: 'upload', relationTo: 'media' },
+        { name: 'imageMobile', type: 'upload', relationTo: 'media' },
+        { name: 'ctaText', type: 'text', localized: true },
+        { name: 'ctaUrl', type: 'text' },
+      ],
+    },
+    {
+      type: 'group',
+      name: 'testimonials',
+      label: 'Client Testimonials Section (Legacy)',
+      admin: {
+        description: 'Deprecated: Use Lexical Blocks Layout instead',
+        readOnly: true,
+        hidden: true,
+      },
+      fields: [
+        { name: 'display', type: 'checkbox', defaultValue: true },
+        {
+          name: 'items',
+          type: 'array',
+          fields: [
+            { name: 'name', type: 'text', required: true },
+            { name: 'jobTitle', type: 'text' },
+            { name: 'sentence', type: 'textarea', localized: true },
+            { name: 'profileImage', type: 'upload', relationTo: 'media' },
+            { name: 'contactUrl', type: 'text' },
+          ],
+        },
+        { name: 'ctaText', type: 'text', localized: true },
+        { name: 'ctaUrl', type: 'text' },
+      ],
+    },
+    {
+      type: 'group',
+      name: 'services',
+      label: 'Services Section (Legacy)',
+      admin: {
+        description: 'Deprecated: Use Lexical Blocks Layout instead',
+        readOnly: true,
+        hidden: true,
+      },
+      fields: [
+        { name: 'titleSmall', type: 'text', localized: true },
+        { name: 'titleBig', type: 'text', localized: true },
+        { name: 'description', type: 'textarea', localized: true },
+        { name: 'rightTitle', type: 'text', localized: true },
+        { name: 'rightLinkText', type: 'text', localized: true },
+        { name: 'rightLinkUrl', type: 'text' },
+        {
+          name: 'items',
+          type: 'array',
+          fields: [
+            { name: 'titleFirst', type: 'text', localized: true },
+            { name: 'titleSecond', type: 'text', localized: true },
+            { name: 'description', type: 'textarea', localized: true },
+            { name: 'icon', type: 'upload', relationTo: 'media' },
+            { name: 'image', type: 'upload', relationTo: 'media' },
+            { name: 'url', type: 'text' },
+          ],
+        },
+      ],
+    },
+    {
+      type: 'group',
+      name: 'international',
+      label: 'International Section (Legacy)',
+      admin: {
+        description: 'Deprecated: Use Lexical Blocks Layout instead',
+        readOnly: true,
+        hidden: true,
+      },
+      fields: [
+        { name: 'titleSmall', type: 'text', localized: true },
+        { name: 'titleBig', type: 'text', localized: true },
+        {
+          name: 'items',
+          type: 'array',
+          fields: [
+            { name: 'title', type: 'text', localized: true },
+            { name: 'summary', type: 'textarea', localized: true },
+            { name: 'eventType', type: 'text', localized: true },
+            { name: 'image', type: 'upload', relationTo: 'media' },
+          ],
+        },
+      ],
+    },
+    {
+      type: 'group',
+      name: 'digitalzone',
+      label: 'Digitalzone Event Section (Legacy)',
+      admin: {
+        description: 'Deprecated: Use Lexical Blocks Layout instead',
+        readOnly: true,
+        hidden: true,
+      },
+      fields: [
+        { name: 'logo', type: 'upload', relationTo: 'media' },
+        { name: 'titleSmall', type: 'text', localized: true },
+        { name: 'titleBig', type: 'text', localized: true },
+        { name: 'description', type: 'richText', localized: true },
+        { name: 'image', type: 'upload', relationTo: 'media' },
+        { name: 'linkText', type: 'text', localized: true },
+        { name: 'linkUrl', type: 'text' },
+      ],
+    },
+    {
+      name: 'caseStudies',
+      label: 'Featured Case Studies (Legacy)',
+      admin: {
+        description: 'Deprecated: Use Lexical Blocks Layout instead',
+        readOnly: true,
+        hidden: true,
+      },
+      type: 'relationship',
+      relationTo: 'case-studies',
+      hasMany: true,
+      maxRows: 3,
+    },
+    {
+      name: 'references',
+      label: 'Client References (Legacy)',
+      admin: {
+        description: 'Deprecated: Use Lexical Blocks Layout instead',
+        readOnly: true,
+        hidden: true,
+      },
+      type: 'relationship',
+      relationTo: 'customer-references',
+      hasMany: true,
+    },
+    {
+      type: 'group',
+      name: 'otherServices',
+      label: 'Other Services Section (Legacy)',
+      admin: {
+        description: 'Deprecated: Use Lexical Blocks Layout instead',
+        readOnly: true,
+        hidden: true,
+      },
+      fields: [
+        {
+          name: 'items',
+          type: 'array',
+          fields: [
+            { name: 'title', type: 'text', localized: true },
+            { name: 'titleFirst', type: 'text', localized: true },
+            { name: 'descriptionFirst', type: 'textarea', localized: true },
+            { name: 'titleSecond', type: 'text', localized: true },
+            { name: 'descriptionSecond', type: 'textarea', localized: true },
+            { name: 'image', type: 'upload', relationTo: 'media' },
+            { name: 'displayImageAtRight', type: 'checkbox', defaultValue: false },
+          ],
+        },
+      ],
+    },
+    {
+      type: 'group',
+      name: 'resources',
+      label: 'Resources Section (Legacy)',
+      admin: {
+        description: 'Deprecated: Use Lexical Blocks Layout instead',
+        readOnly: true,
+        hidden: true,
+      },
+      fields: [
+        { name: 'titleSmall', type: 'text', localized: true },
+        { name: 'titleBig', type: 'text', localized: true },
+        { name: 'contentCountsSuffix', type: 'text', localized: true },
+        { name: 'contentCountsLinkText', type: 'text', localized: true },
+        {
+          name: 'boxes',
+          type: 'array',
+          maxRows: 3,
+          fields: [
+            { name: 'title', type: 'text', localized: true },
+            { name: 'description', type: 'richText', localized: true },
+            { name: 'buttonText', type: 'text', localized: true },
+            { name: 'linkUrl', type: 'text' },
+            { name: 'linkTitle', type: 'text', localized: true },
+          ],
+        },
+        {
+          type: 'group',
+          name: 'guidebook',
+          fields: [
+            { name: 'title', type: 'text', localized: true },
+            { name: 'image', type: 'upload', relationTo: 'media' },
+            { name: 'linkUrl', type: 'text' },
+          ],
+        },
+        {
+          type: 'group',
+          name: 'fullbox',
+          fields: [
+            { name: 'title', type: 'text', localized: true },
+            { name: 'description', type: 'richText', localized: true },
+            { name: 'image', type: 'upload', relationTo: 'media' },
+            { name: 'linkUrl', type: 'text' },
+          ],
+        },
+        {
+          type: 'group',
+          name: 'digitalzoneLink',
+          fields: [
+            { name: 'prefix', type: 'text', localized: true },
+            { name: 'suffix', type: 'text', localized: true },
+            { name: 'url', type: 'text' },
+          ],
+        },
+        {
+          type: 'group',
+          name: 'agileApproach',
+          fields: [
+            { name: 'titleFirstLine', type: 'text', localized: true },
+            { name: 'titleSecondLine', type: 'text', localized: true },
+            { name: 'firstQuestion', type: 'text', localized: true },
+            { name: 'firstAnswer', type: 'textarea', localized: true },
+            { name: 'secondQuestion', type: 'text', localized: true },
+            { name: 'secondAnswer', type: 'textarea', localized: true },
+            { name: 'image', type: 'upload', relationTo: 'media' },
+          ],
+        },
+      ],
+    },
+    {
+      type: 'group',
+      name: 'seo',
+      label: 'SEO',
+      fields: [
+        { name: 'title', type: 'text', localized: true, maxLength: 60 },
+        { name: 'description', type: 'textarea', localized: true, maxLength: 160 },
+        { name: 'image', type: 'upload', relationTo: 'media' },
+      ],
+    },
+    {
+      name: 'datoId',
+      type: 'text',
+      admin: { description: 'DatoCMS migration ID' },
+    },
+  ],
+}

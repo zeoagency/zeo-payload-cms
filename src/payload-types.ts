@@ -69,6 +69,36 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    menus: Menu;
+    pages: Page;
+    redirects: Redirect;
+    articles: Article;
+    guides: Guide;
+    books: Book;
+    videos: Video;
+    podcasts: Podcast;
+    services: Service;
+    'case-studies': CaseStudy;
+    'static-articles': StaticArticle;
+    'seo-dictionary-terms': SeoDictionaryTerm;
+    'ai-dictionary-terms': AiDictionaryTerm;
+    'algorithm-updates': AlgorithmUpdate;
+    events: Event;
+    webinars: Webinar;
+    'open-positions': OpenPosition;
+    tools: Tool;
+    'marketing-tools': MarketingTool;
+    'seo-checklists': SeoChecklist;
+    packages: Package;
+    categories: Category;
+    tags: Tag;
+    'customer-reference-categories': CustomerReferenceCategory;
+    'customer-references': CustomerReference;
+    'contact-messages': ContactMessage;
+    'contact-submissions': ContactSubmission;
+    'job-applications': JobApplication;
+    'meetup-registrations': MeetupRegistration;
+    'sponsor-applications': SponsorApplication;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -78,6 +108,36 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    menus: MenusSelect<false> | MenusSelect<true>;
+    pages: PagesSelect<false> | PagesSelect<true>;
+    redirects: RedirectsSelect<false> | RedirectsSelect<true>;
+    articles: ArticlesSelect<false> | ArticlesSelect<true>;
+    guides: GuidesSelect<false> | GuidesSelect<true>;
+    books: BooksSelect<false> | BooksSelect<true>;
+    videos: VideosSelect<false> | VideosSelect<true>;
+    podcasts: PodcastsSelect<false> | PodcastsSelect<true>;
+    services: ServicesSelect<false> | ServicesSelect<true>;
+    'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
+    'static-articles': StaticArticlesSelect<false> | StaticArticlesSelect<true>;
+    'seo-dictionary-terms': SeoDictionaryTermsSelect<false> | SeoDictionaryTermsSelect<true>;
+    'ai-dictionary-terms': AiDictionaryTermsSelect<false> | AiDictionaryTermsSelect<true>;
+    'algorithm-updates': AlgorithmUpdatesSelect<false> | AlgorithmUpdatesSelect<true>;
+    events: EventsSelect<false> | EventsSelect<true>;
+    webinars: WebinarsSelect<false> | WebinarsSelect<true>;
+    'open-positions': OpenPositionsSelect<false> | OpenPositionsSelect<true>;
+    tools: ToolsSelect<false> | ToolsSelect<true>;
+    'marketing-tools': MarketingToolsSelect<false> | MarketingToolsSelect<true>;
+    'seo-checklists': SeoChecklistsSelect<false> | SeoChecklistsSelect<true>;
+    packages: PackagesSelect<false> | PackagesSelect<true>;
+    categories: CategoriesSelect<false> | CategoriesSelect<true>;
+    tags: TagsSelect<false> | TagsSelect<true>;
+    'customer-reference-categories': CustomerReferenceCategoriesSelect<false> | CustomerReferenceCategoriesSelect<true>;
+    'customer-references': CustomerReferencesSelect<false> | CustomerReferencesSelect<true>;
+    'contact-messages': ContactMessagesSelect<false> | ContactMessagesSelect<true>;
+    'contact-submissions': ContactSubmissionsSelect<false> | ContactSubmissionsSelect<true>;
+    'job-applications': JobApplicationsSelect<false> | JobApplicationsSelect<true>;
+    'meetup-registrations': MeetupRegistrationsSelect<false> | MeetupRegistrationsSelect<true>;
+    'sponsor-applications': SponsorApplicationsSelect<false> | SponsorApplicationsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -87,8 +147,40 @@ export interface Config {
     defaultIDType: number;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    homepage: Homepage;
+    'site-settings': SiteSetting;
+    'page-settings': PageSetting;
+    translations: Translation;
+    'team-page': TeamPage;
+    'culture-page': CulturePage;
+    'events-page': EventsPage;
+    'resources-page': ResourcesPage;
+    'tools-page': ToolsPage;
+    'seo-dictionary-page': SeoDictionaryPage;
+    'ai-dictionary-page': AiDictionaryPage;
+    'algorithm-updates-page': AlgorithmUpdatesPage;
+    'digitalzone-page': DigitalzonePage;
+    'meetup-page': MeetupPage;
+    'geo-page': GeoPage;
+  };
+  globalsSelect: {
+    homepage: HomepageSelect<false> | HomepageSelect<true>;
+    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+    'page-settings': PageSettingsSelect<false> | PageSettingsSelect<true>;
+    translations: TranslationsSelect<false> | TranslationsSelect<true>;
+    'team-page': TeamPageSelect<false> | TeamPageSelect<true>;
+    'culture-page': CulturePageSelect<false> | CulturePageSelect<true>;
+    'events-page': EventsPageSelect<false> | EventsPageSelect<true>;
+    'resources-page': ResourcesPageSelect<false> | ResourcesPageSelect<true>;
+    'tools-page': ToolsPageSelect<false> | ToolsPageSelect<true>;
+    'seo-dictionary-page': SeoDictionaryPageSelect<false> | SeoDictionaryPageSelect<true>;
+    'ai-dictionary-page': AiDictionaryPageSelect<false> | AiDictionaryPageSelect<true>;
+    'algorithm-updates-page': AlgorithmUpdatesPageSelect<false> | AlgorithmUpdatesPageSelect<true>;
+    'digitalzone-page': DigitalzonePageSelect<false> | DigitalzonePageSelect<true>;
+    'meetup-page': MeetupPageSelect<false> | MeetupPageSelect<true>;
+    'geo-page': GeoPageSelect<false> | GeoPageSelect<true>;
+  };
   locale: null;
   user: User & {
     collection: 'users';
@@ -122,6 +214,64 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: number;
+  firstName: string;
+  lastName: string;
+  /**
+   * URL-friendly name for profile page
+   */
+  nickname?: string | null;
+  jobPosition?: string | null;
+  shortDescription?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Full author biography for profile page
+   */
+  bio?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  profileImage?: (number | null) | Media;
+  socialLinks?: {
+    twitter?: string | null;
+    linkedin?: string | null;
+    github?: string | null;
+    website?: string | null;
+  };
+  linkedinLink?: string | null;
+  twitterLink?: string | null;
+  /**
+   * Display order for team page
+   */
+  orderNumber?: number | null;
+  roles?: ('admin' | 'editor' | 'author')[] | null;
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -159,6 +309,1724 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "menus".
+ */
+export interface Menu {
+  id: number;
+  title: string;
+  slug: string;
+  items?:
+    | {
+        label: string;
+        url?: string | null;
+        external?: boolean | null;
+        children?:
+          | {
+              label: string;
+              url?: string | null;
+              external?: boolean | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: number;
+  title: string;
+  slug: string;
+  layout: {
+    title?: string | null;
+    subtitle?: string | null;
+    description?: string | null;
+    phoneNumber?: string | null;
+    image?: (number | null) | Media;
+    imageMobile?: (number | null) | Media;
+    ctaText?: string | null;
+    ctaUrl?: string | null;
+    titleSmall?: string | null;
+    titleBig?: string | null;
+    imageAsset?: (number | null) | Media;
+    id?: string | null;
+    blockName?: string | null;
+    blockType: 'hero';
+  }[];
+  metaTitle?: string | null;
+  metaDescription?: string | null;
+  metaImage?: (number | null) | Media;
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * Manage URL redirects for SEO preservation
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects".
+ */
+export interface Redirect {
+  id: number;
+  /**
+   * Source path (e.g., /old-page or /blog/:slug)
+   */
+  from: string;
+  /**
+   * Destination path (e.g., /en/new-page or /en/resources/articles/:slug)
+   */
+  to: string;
+  /**
+   * Redirect type - use 301 for permanent SEO redirects
+   */
+  type: 'permanent' | 'temporary' | 'temporaryPreserveMethod' | 'permanentPreserveMethod';
+  /**
+   * Enable or disable this redirect
+   */
+  enabled?: boolean | null;
+  /**
+   * Higher priority redirects are processed first (useful for pattern matching)
+   */
+  priority?: number | null;
+  /**
+   * Internal notes about this redirect (e.g., reason, migration date)
+   */
+  notes?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "articles".
+ */
+export interface Article {
+  id: number;
+  title: string;
+  slug: string;
+  /**
+   * Short description for cards and previews
+   */
+  descriptionSmall?: string | null;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Optional: Manual table of contents. If not provided, will auto-generate from headings.
+   */
+  tableOfContents?:
+    | {
+        /**
+         * Display text for the ToC entry
+         */
+        title: string;
+        /**
+         * ID of the heading element to link to (e.g., "introduction")
+         */
+        sectionId: string;
+        id?: string | null;
+      }[]
+    | null;
+  image?: (number | null) | Media;
+  author: number | User;
+  category?: (number | null) | Category;
+  tags?: (number | Tag)[] | null;
+  publishedAt: string;
+  relatedArticles?: (number | Article)[] | null;
+  metaTitle?: string | null;
+  metaDescription?: string | null;
+  metaImage?: (number | null) | Media;
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  workflowStatus?: ('draft' | 'review' | 'approved' | 'published' | 'archived') | null;
+  /**
+   * Schedule content to publish at specific date/time
+   */
+  publishAt?: string | null;
+  ratings?:
+    | {
+        userId?: string | null;
+        rating: number;
+        createdAt?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  averageRating?: number | null;
+  totalRatings?: number | null;
+  /**
+   * Number of article views
+   */
+  views?: number | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories".
+ */
+export interface Category {
+  id: number;
+  title: string;
+  slug: string;
+  description?: string | null;
+  type?: ('article' | 'guide' | 'video' | 'book') | null;
+  metaTitle?: string | null;
+  metaDescription?: string | null;
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tags".
+ */
+export interface Tag {
+  id: number;
+  title: string;
+  slug: string;
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "guides".
+ */
+export interface Guide {
+  id: number;
+  title: string;
+  slug: string;
+  descriptionSmall?: string | null;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Optional: Manual table of contents. If not provided, will auto-generate from headings.
+   */
+  tableOfContents?:
+    | {
+        /**
+         * Display text for the ToC entry
+         */
+        title: string;
+        /**
+         * ID of the heading element to link to (e.g., "introduction")
+         */
+        sectionId: string;
+        id?: string | null;
+      }[]
+    | null;
+  image?: (number | null) | Media;
+  author: number | User;
+  category?: (number | null) | Category;
+  tags?: (number | Tag)[] | null;
+  publishedAt: string;
+  metaTitle?: string | null;
+  metaDescription?: string | null;
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  workflowStatus?: ('draft' | 'review' | 'approved' | 'published' | 'archived') | null;
+  /**
+   * Schedule content to publish at specific date/time
+   */
+  publishAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "books".
+ */
+export interface Book {
+  id: number;
+  title: string;
+  slug: string;
+  author: string;
+  publisher?: string | null;
+  publishYear?: number | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * First line of title on book cover
+   */
+  coverTitleFirst?: string | null;
+  /**
+   * Second line of title on book cover
+   */
+  coverTitleSecond?: string | null;
+  /**
+   * Short description displayed on book cover
+   */
+  coverDescription?: string | null;
+  image: number | Media;
+  purchaseUrl?: string | null;
+  /**
+   * Downloadable PDF file for the book
+   */
+  file?: (number | null) | Media;
+  /**
+   * Autopilot contact list ID for download form submissions
+   */
+  autopilotappContactListId?: string | null;
+  category?: (number | null) | Category;
+  metaTitle?: string | null;
+  metaDescription?: string | null;
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "videos".
+ */
+export interface Video {
+  id: number;
+  title: string;
+  slug: string;
+  descriptionSmall?: string | null;
+  /**
+   * Full video description
+   */
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * YouTube video ID
+   */
+  videoId: string;
+  /**
+   * Full YouTube URL (alternative to videoId)
+   */
+  videoUrl?: string | null;
+  thumbnail?: (number | null) | Media;
+  /**
+   * Video duration (e.g., "15:30")
+   */
+  duration?: string | null;
+  author: number | User;
+  category?: (number | null) | Category;
+  tags?: (number | Tag)[] | null;
+  publishedAt: string;
+  metaTitle?: string | null;
+  metaDescription?: string | null;
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  workflowStatus?: ('draft' | 'review' | 'approved' | 'published' | 'archived') | null;
+  /**
+   * Schedule content to publish at specific date/time
+   */
+  publishAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "podcasts".
+ */
+export interface Podcast {
+  id: number;
+  title: string;
+  slug: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  audioUrl?: string | null;
+  image?: (number | null) | Media;
+  publishedAt?: string | null;
+  duration?: string | null;
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services".
+ */
+export interface Service {
+  id: number;
+  title: string;
+  slug: string;
+  layout?:
+    | (
+        | {
+            title?: string | null;
+            subtitle?: string | null;
+            description?: string | null;
+            phoneNumber?: string | null;
+            image?: (number | null) | Media;
+            imageMobile?: (number | null) | Media;
+            ctaText?: string | null;
+            ctaUrl?: string | null;
+            titleSmall?: string | null;
+            titleBig?: string | null;
+            imageAsset?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
+          }
+        | {
+            titleSmall?: string | null;
+            titleBig?: string | null;
+            description?: string | null;
+            rightTitle?: string | null;
+            rightLinkText?: string | null;
+            rightLinkUrl?: string | null;
+            sideTitleFirst?: string | null;
+            sideTitleSecond?: string | null;
+            items?:
+              | {
+                  titleFirst?: string | null;
+                  titleSecond?: string | null;
+                  title?: string | null;
+                  description?: string | null;
+                  icon?: (number | null) | Media;
+                  image?: (number | null) | Media;
+                  url?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'services';
+          }
+        | {
+            title?: string | null;
+            description?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            rightTitleSmall?: string | null;
+            rightTitleBig?: string | null;
+            rightDescription?: string | null;
+            leftTitleSmall?: string | null;
+            leftTitleBig?: string | null;
+            leftDescription?: string | null;
+            standaloneImage?: (number | null) | Media;
+            section3TitleSmall?: string | null;
+            section3TitleBig?: string | null;
+            section3DescriptionSmall?: string | null;
+            section3Description?: string | null;
+            section3Image?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'whatWeDo';
+          }
+        | {
+            title?: string | null;
+            description?: string | null;
+            items?:
+              | {
+                  step?: number | null;
+                  title?: string | null;
+                  summary?: string | null;
+                  description?: string | null;
+                  image?: (number | null) | Media;
+                  url?: string | null;
+                  urlText?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'process';
+          }
+        | {
+            display?: boolean | null;
+            items?:
+              | {
+                  name: string;
+                  jobTitle?: string | null;
+                  sentence?: string | null;
+                  profileImage?: (number | null) | Media;
+                  contactUrl?: string | null;
+                  quote?: string | null;
+                  quote2?: string | null;
+                  author?: string | null;
+                  company?: string | null;
+                  image?: (number | null) | Media;
+                  companyLogo?: (number | null) | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            ctaText?: string | null;
+            ctaUrl?: string | null;
+            titleSmall?: string | null;
+            titleBig?: string | null;
+            titleSmallDescription?: string | null;
+            displayAllReferencesLink?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonials';
+          }
+        | {
+            titleSmall?: string | null;
+            titleBig?: string | null;
+            description?: string | null;
+            items?:
+              | {
+                  title?: string | null;
+                  description?: string | null;
+                  image?: (number | null) | Media;
+                  caseStudy?: (number | null) | CaseStudy;
+                  id?: string | null;
+                }[]
+              | null;
+            referenceLogos?:
+              | {
+                  logo?: (number | null) | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'stories';
+          }
+        | {
+            titleSmall?: string | null;
+            titleBig?: string | null;
+            items?:
+              | {
+                  question?: string | null;
+                  answer?: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: any;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  } | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'faq';
+          }
+        | {
+            titleSmall?: string | null;
+            titleBig?: string | null;
+            description?: string | null;
+            subSection1?: {
+              titleSmall?: string | null;
+              titleBig?: string | null;
+              description?: string | null;
+              image?: (number | null) | Media;
+              logo1?: (number | null) | Media;
+              logo2?: (number | null) | Media;
+            };
+            subSection2?: {
+              titleSmall?: string | null;
+              titleBig?: string | null;
+              description?: string | null;
+              image?: (number | null) | Media;
+              logo1?: (number | null) | Media;
+            };
+            subSection3?: {
+              titleSmall?: string | null;
+              titleBig?: string | null;
+              description?: string | null;
+              image?: (number | null) | Media;
+              logo1?: (number | null) | Media;
+              logo2?: (number | null) | Media;
+            };
+            attendedConferences?: {
+              titleLine1?: string | null;
+              titleLine2?: string | null;
+              titleLine3?: string | null;
+              links?:
+                | {
+                    url?: string | null;
+                    image?: (number | null) | Media;
+                    id?: string | null;
+                  }[]
+                | null;
+            };
+            tools?: {
+              titleLine1?: string | null;
+              titleLine2?: string | null;
+              description?: string | null;
+              links?:
+                | {
+                    url?: string | null;
+                    image?: (number | null) | Media;
+                    id?: string | null;
+                  }[]
+                | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'aboutZeo';
+          }
+      )[]
+    | null;
+  /**
+   * Deprecated: Use Lexical Blocks Layout instead
+   */
+  hero?: {
+    titleSmall?: string | null;
+    titleBig?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+    imageAsset?: (number | null) | Media;
+  };
+  /**
+   * Deprecated: Use Lexical Blocks Layout instead
+   */
+  subServices?: {
+    titleSmall?: string | null;
+    titleBig?: string | null;
+    description?: string | null;
+    sideTitleFirst?: string | null;
+    sideTitleSecond?: string | null;
+    items?:
+      | {
+          title?: string | null;
+          description?: string | null;
+          icon?: (number | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  /**
+   * Deprecated: Use Lexical Blocks Layout instead
+   */
+  what?: {
+    title?: string | null;
+    description?: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    rightTitleSmall?: string | null;
+    rightTitleBig?: string | null;
+    rightDescription?: string | null;
+    leftTitleSmall?: string | null;
+    leftTitleBig?: string | null;
+    leftDescription?: string | null;
+    standaloneImage?: (number | null) | Media;
+    section3TitleSmall?: string | null;
+    section3TitleBig?: string | null;
+    section3DescriptionSmall?: string | null;
+    section3Description?: string | null;
+    section3Image?: (number | null) | Media;
+  };
+  standaloneImage?: (number | null) | Media;
+  section2?: {
+    rightTitleSmall?: string | null;
+    rightTitleBig?: string | null;
+    rightDescription?: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    leftTitleSmall?: string | null;
+    leftTitleBig?: string | null;
+    leftDescription?: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+  };
+  section3?: {
+    titleSmall?: string | null;
+    titleBig?: string | null;
+    descriptionSmall?: string | null;
+    description?: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    image?: (number | null) | Media;
+  };
+  /**
+   * Deprecated: Use Lexical Blocks Layout instead
+   */
+  processes?: {
+    title?: string | null;
+    description?: string | null;
+    items?:
+      | {
+          step?: number | null;
+          title?: string | null;
+          description?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  /**
+   * Deprecated: Use Lexical Blocks Layout instead
+   */
+  stories?: {
+    titleSmall?: string | null;
+    titleBig?: string | null;
+    description?: string | null;
+    items?:
+      | {
+          title?: string | null;
+          description?: string | null;
+          image?: (number | null) | Media;
+          caseStudy?: (number | null) | CaseStudy;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  /**
+   * Deprecated: Use Lexical Blocks Layout instead
+   */
+  testimonials?:
+    | {
+        quote?: string | null;
+        quote2?: string | null;
+        author?: string | null;
+        company?: string | null;
+        image?: (number | null) | Media;
+        companyLogo?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Deprecated: Use Lexical Blocks Layout instead
+   */
+  referenceLogos?:
+    | {
+        logo?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Deprecated: Use Lexical Blocks Layout instead
+   */
+  testimonialsSection?: {
+    titleSmall?: string | null;
+    titleBig?: string | null;
+    titleSmallDescription?: string | null;
+    displayAllReferencesLink?: boolean | null;
+  };
+  caseStudies?: (number | CaseStudy)[] | null;
+  /**
+   * Deprecated: Use Lexical Blocks Layout instead
+   */
+  faq?:
+    | {
+        question?: string | null;
+        answer?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Deprecated: Use Lexical Blocks Layout instead
+   */
+  faqSection?: {
+    titleSmall?: string | null;
+    titleBig?: string | null;
+  };
+  /**
+   * Deprecated: Use Lexical Blocks Layout instead
+   */
+  aboutZeo?: {
+    titleSmall?: string | null;
+    titleBig?: string | null;
+    description?: string | null;
+    subSection1?: {
+      titleSmall?: string | null;
+      titleBig?: string | null;
+      description?: string | null;
+      image?: (number | null) | Media;
+      logo1?: (number | null) | Media;
+      logo2?: (number | null) | Media;
+    };
+    subSection2?: {
+      titleSmall?: string | null;
+      titleBig?: string | null;
+      description?: string | null;
+      image?: (number | null) | Media;
+      logo1?: (number | null) | Media;
+    };
+    subSection3?: {
+      titleSmall?: string | null;
+      titleBig?: string | null;
+      description?: string | null;
+      image?: (number | null) | Media;
+      logo1?: (number | null) | Media;
+      logo2?: (number | null) | Media;
+    };
+    attendedConferences?: {
+      titleLine1?: string | null;
+      titleLine2?: string | null;
+      titleLine3?: string | null;
+      links?:
+        | {
+            url?: string | null;
+            image?: (number | null) | Media;
+            id?: string | null;
+          }[]
+        | null;
+    };
+    tools?: {
+      titleLine1?: string | null;
+      titleLine2?: string | null;
+      description?: string | null;
+      links?:
+        | {
+            url?: string | null;
+            image?: (number | null) | Media;
+            id?: string | null;
+          }[]
+        | null;
+    };
+  };
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "case-studies".
+ */
+export interface CaseStudy {
+  id: number;
+  title: string;
+  slug: string;
+  description?: string | null;
+  /**
+   * Brief summary for listings and previews
+   */
+  summary?: string | null;
+  /**
+   * Client/customer this case study is about
+   */
+  client?: (number | null) | CustomerReference;
+  /**
+   * The challenge or problem the client faced
+   */
+  challenge?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * How Zeo solved the challenge
+   */
+  solution?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * The outcomes and results achieved
+   */
+  results?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Additional content (optional)
+   */
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  image?: (number | null) | Media;
+  /**
+   * Client logo
+   */
+  logo?: (number | null) | Media;
+  category?: (number | null) | Category;
+  metrics?:
+    | {
+        label?: string | null;
+        value?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  testimonial?: {
+    quote?: string | null;
+    author?: string | null;
+    position?: string | null;
+  };
+  relatedCaseStudies?: (number | CaseStudy)[] | null;
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "customer-references".
+ */
+export interface CustomerReference {
+  id: number;
+  name: string;
+  logo?: (number | null) | Media;
+  category?: (number | null) | CustomerReferenceCategory;
+  url?: string | null;
+  orderNumber?: number | null;
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "customer-reference-categories".
+ */
+export interface CustomerReferenceCategory {
+  id: number;
+  title: string;
+  slug: string;
+  orderNumber?: number | null;
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "static-articles".
+ */
+export interface StaticArticle {
+  id: number;
+  title: string;
+  slug: string;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  image?: (number | null) | Media;
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "seo-dictionary-terms".
+ */
+export interface SeoDictionaryTerm {
+  id: number;
+  title: string;
+  slug: string;
+  /**
+   * Short description for listings
+   */
+  teaser?: string | null;
+  definition?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  category?: (number | null) | Category;
+  relatedTerms?: (number | SeoDictionaryTerm)[] | null;
+  relatedArticles?: (number | Article)[] | null;
+  /**
+   * External authority links
+   */
+  authorityLinks?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ai-dictionary-terms".
+ */
+export interface AiDictionaryTerm {
+  id: number;
+  title: string;
+  slug: string;
+  /**
+   * Short description for listings
+   */
+  teaser?: string | null;
+  definition?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  category?: (number | null) | Category;
+  relatedTerms?: (number | AiDictionaryTerm)[] | null;
+  relatedArticles?: (number | Article)[] | null;
+  /**
+   * External authority links
+   */
+  authorityLinks?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "algorithm-updates".
+ */
+export interface AlgorithmUpdate {
+  id: number;
+  title: string;
+  slug: string;
+  date: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  confirmed?: boolean | null;
+  category?: (number | null) | Category;
+  image?: (number | null) | Media;
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events".
+ */
+export interface Event {
+  id: number;
+  title: string;
+  slug: string;
+  date: string;
+  endDate?: string | null;
+  location?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  image?: (number | null) | Media;
+  registrationUrl?: string | null;
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "webinars".
+ */
+export interface Webinar {
+  id: number;
+  title: string;
+  slug: string;
+  date: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  image?: (number | null) | Media;
+  videoUrl?: string | null;
+  speaker?: (number | null) | User;
+  registrationUrl?: string | null;
+  /**
+   * Webinar category for filtering
+   */
+  category?: (number | null) | Category;
+  /**
+   * Additional tags for webinar
+   */
+  tags?: (number | Category)[] | null;
+  /**
+   * Webinar speakers
+   */
+  speakers?: (number | User)[] | null;
+  /**
+   * Webinar start time
+   */
+  startDate?: string | null;
+  /**
+   * Webinar end time
+   */
+  endDate?: string | null;
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "open-positions".
+ */
+export interface OpenPosition {
+  id: number;
+  title: string;
+  slug: string;
+  department?: string | null;
+  location?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  requirements?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  applicationUrl?: string | null;
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tools".
+ */
+export interface Tool {
+  id: number;
+  title: string;
+  slug: string;
+  description?: string | null;
+  url?: string | null;
+  image?: (number | null) | Media;
+  category?: (number | null) | Category;
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "marketing-tools".
+ */
+export interface MarketingTool {
+  id: number;
+  title: string;
+  slug: string;
+  description?: string | null;
+  url?: string | null;
+  image?: (number | null) | Media;
+  logo?: (number | null) | Media;
+  category?: (number | null) | Category;
+  pricing?: string | null;
+  features?:
+    | {
+        feature?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "seo-checklists".
+ */
+export interface SeoChecklist {
+  id: number;
+  title: string;
+  slug: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  items?:
+    | {
+        title?: string | null;
+        description?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        completed?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "packages".
+ */
+export interface Package {
+  id: number;
+  title: string;
+  slug: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  price?: string | null;
+  features?:
+    | {
+        feature?: string | null;
+        included?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  ctaText?: string | null;
+  ctaUrl?: string | null;
+  highlighted?: boolean | null;
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  coverImage?: (number | null) | Media;
+  coverTitleFirst: string;
+  coverTitleSecond?: string | null;
+  shortDescription?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  author?: (number | null) | User;
+  /**
+   * Autopilot contact list ID
+   */
+  autopilotappContactListId?: string | null;
+  /**
+   * Show people count field in registration form
+   */
+  formHasPeopleCountField?: boolean | null;
+  /**
+   * Custom text for form submit button
+   */
+  formActionText?: string | null;
+  categories?: (number | Category)[] | null;
+  /**
+   * Package file/PDF
+   */
+  file?: (number | null) | Media;
+  /**
+   * Secondary title for package page
+   */
+  title2?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-messages".
+ */
+export interface ContactMessage {
+  id: number;
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  status?: ('new' | 'read' | 'replied') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-submissions".
+ */
+export interface ContactSubmission {
+  id: number;
+  fullName: string;
+  email: string;
+  phone?: string | null;
+  company?: string | null;
+  message: string;
+  status?: ('new' | 'in-progress' | 'completed') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "job-applications".
+ */
+export interface JobApplication {
+  id: number;
+  fullName: string;
+  email: string;
+  phone?: string | null;
+  position: string;
+  coverLetter?: string | null;
+  resume?: (number | null) | Media;
+  status?: ('submitted' | 'under-review' | 'interview' | 'offered' | 'rejected' | 'withdrawn') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "meetup-registrations".
+ */
+export interface MeetupRegistration {
+  id: number;
+  name: string;
+  email: string;
+  phone?: string | null;
+  company?: string | null;
+  jobTitle?: string | null;
+  dietaryRestrictions?: string | null;
+  status?: ('registered' | 'confirmed' | 'cancelled') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sponsor-applications".
+ */
+export interface SponsorApplication {
+  id: number;
+  companyName: string;
+  contactName: string;
+  email: string;
+  phone?: string | null;
+  sponsorshipLevel: 'platinum' | 'gold' | 'silver' | 'bronze';
+  message?: string | null;
+  status?: ('submitted' | 'under-review' | 'approved' | 'rejected') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -188,6 +2056,126 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'menus';
+        value: number | Menu;
+      } | null)
+    | ({
+        relationTo: 'pages';
+        value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'redirects';
+        value: number | Redirect;
+      } | null)
+    | ({
+        relationTo: 'articles';
+        value: number | Article;
+      } | null)
+    | ({
+        relationTo: 'guides';
+        value: number | Guide;
+      } | null)
+    | ({
+        relationTo: 'books';
+        value: number | Book;
+      } | null)
+    | ({
+        relationTo: 'videos';
+        value: number | Video;
+      } | null)
+    | ({
+        relationTo: 'podcasts';
+        value: number | Podcast;
+      } | null)
+    | ({
+        relationTo: 'services';
+        value: number | Service;
+      } | null)
+    | ({
+        relationTo: 'case-studies';
+        value: number | CaseStudy;
+      } | null)
+    | ({
+        relationTo: 'static-articles';
+        value: number | StaticArticle;
+      } | null)
+    | ({
+        relationTo: 'seo-dictionary-terms';
+        value: number | SeoDictionaryTerm;
+      } | null)
+    | ({
+        relationTo: 'ai-dictionary-terms';
+        value: number | AiDictionaryTerm;
+      } | null)
+    | ({
+        relationTo: 'algorithm-updates';
+        value: number | AlgorithmUpdate;
+      } | null)
+    | ({
+        relationTo: 'events';
+        value: number | Event;
+      } | null)
+    | ({
+        relationTo: 'webinars';
+        value: number | Webinar;
+      } | null)
+    | ({
+        relationTo: 'open-positions';
+        value: number | OpenPosition;
+      } | null)
+    | ({
+        relationTo: 'tools';
+        value: number | Tool;
+      } | null)
+    | ({
+        relationTo: 'marketing-tools';
+        value: number | MarketingTool;
+      } | null)
+    | ({
+        relationTo: 'seo-checklists';
+        value: number | SeoChecklist;
+      } | null)
+    | ({
+        relationTo: 'packages';
+        value: number | Package;
+      } | null)
+    | ({
+        relationTo: 'categories';
+        value: number | Category;
+      } | null)
+    | ({
+        relationTo: 'tags';
+        value: number | Tag;
+      } | null)
+    | ({
+        relationTo: 'customer-reference-categories';
+        value: number | CustomerReferenceCategory;
+      } | null)
+    | ({
+        relationTo: 'customer-references';
+        value: number | CustomerReference;
+      } | null)
+    | ({
+        relationTo: 'contact-messages';
+        value: number | ContactMessage;
+      } | null)
+    | ({
+        relationTo: 'contact-submissions';
+        value: number | ContactSubmission;
+      } | null)
+    | ({
+        relationTo: 'job-applications';
+        value: number | JobApplication;
+      } | null)
+    | ({
+        relationTo: 'meetup-registrations';
+        value: number | MeetupRegistration;
+      } | null)
+    | ({
+        relationTo: 'sponsor-applications';
+        value: number | SponsorApplication;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -236,6 +2224,26 @@ export interface PayloadMigration {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  firstName?: T;
+  lastName?: T;
+  nickname?: T;
+  jobPosition?: T;
+  shortDescription?: T;
+  bio?: T;
+  profileImage?: T;
+  socialLinks?:
+    | T
+    | {
+        twitter?: T;
+        linkedin?: T;
+        github?: T;
+        website?: T;
+      };
+  linkedinLink?: T;
+  twitterLink?: T;
+  orderNumber?: T;
+  roles?: T;
+  datoId?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -268,6 +2276,1103 @@ export interface MediaSelect<T extends boolean = true> {
   filesize?: T;
   width?: T;
   height?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "menus_select".
+ */
+export interface MenusSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  items?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+        external?: T;
+        children?:
+          | T
+          | {
+              label?: T;
+              url?: T;
+              external?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages_select".
+ */
+export interface PagesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  layout?:
+    | T
+    | {
+        hero?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              description?: T;
+              phoneNumber?: T;
+              image?: T;
+              imageMobile?: T;
+              ctaText?: T;
+              ctaUrl?: T;
+              titleSmall?: T;
+              titleBig?: T;
+              imageAsset?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  metaTitle?: T;
+  metaDescription?: T;
+  metaImage?: T;
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects_select".
+ */
+export interface RedirectsSelect<T extends boolean = true> {
+  from?: T;
+  to?: T;
+  type?: T;
+  enabled?: T;
+  priority?: T;
+  notes?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "articles_select".
+ */
+export interface ArticlesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  descriptionSmall?: T;
+  content?: T;
+  tableOfContents?:
+    | T
+    | {
+        title?: T;
+        sectionId?: T;
+        id?: T;
+      };
+  image?: T;
+  author?: T;
+  category?: T;
+  tags?: T;
+  publishedAt?: T;
+  relatedArticles?: T;
+  metaTitle?: T;
+  metaDescription?: T;
+  metaImage?: T;
+  datoId?: T;
+  workflowStatus?: T;
+  publishAt?: T;
+  ratings?:
+    | T
+    | {
+        userId?: T;
+        rating?: T;
+        createdAt?: T;
+        id?: T;
+      };
+  averageRating?: T;
+  totalRatings?: T;
+  views?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "guides_select".
+ */
+export interface GuidesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  descriptionSmall?: T;
+  content?: T;
+  tableOfContents?:
+    | T
+    | {
+        title?: T;
+        sectionId?: T;
+        id?: T;
+      };
+  image?: T;
+  author?: T;
+  category?: T;
+  tags?: T;
+  publishedAt?: T;
+  metaTitle?: T;
+  metaDescription?: T;
+  datoId?: T;
+  workflowStatus?: T;
+  publishAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "books_select".
+ */
+export interface BooksSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  author?: T;
+  publisher?: T;
+  publishYear?: T;
+  description?: T;
+  coverTitleFirst?: T;
+  coverTitleSecond?: T;
+  coverDescription?: T;
+  image?: T;
+  purchaseUrl?: T;
+  file?: T;
+  autopilotappContactListId?: T;
+  category?: T;
+  metaTitle?: T;
+  metaDescription?: T;
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "videos_select".
+ */
+export interface VideosSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  descriptionSmall?: T;
+  description?: T;
+  videoId?: T;
+  videoUrl?: T;
+  thumbnail?: T;
+  duration?: T;
+  author?: T;
+  category?: T;
+  tags?: T;
+  publishedAt?: T;
+  metaTitle?: T;
+  metaDescription?: T;
+  datoId?: T;
+  workflowStatus?: T;
+  publishAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "podcasts_select".
+ */
+export interface PodcastsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  description?: T;
+  audioUrl?: T;
+  image?: T;
+  publishedAt?: T;
+  duration?: T;
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services_select".
+ */
+export interface ServicesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  layout?:
+    | T
+    | {
+        hero?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              description?: T;
+              phoneNumber?: T;
+              image?: T;
+              imageMobile?: T;
+              ctaText?: T;
+              ctaUrl?: T;
+              titleSmall?: T;
+              titleBig?: T;
+              imageAsset?: T;
+              id?: T;
+              blockName?: T;
+            };
+        services?:
+          | T
+          | {
+              titleSmall?: T;
+              titleBig?: T;
+              description?: T;
+              rightTitle?: T;
+              rightLinkText?: T;
+              rightLinkUrl?: T;
+              sideTitleFirst?: T;
+              sideTitleSecond?: T;
+              items?:
+                | T
+                | {
+                    titleFirst?: T;
+                    titleSecond?: T;
+                    title?: T;
+                    description?: T;
+                    icon?: T;
+                    image?: T;
+                    url?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        whatWeDo?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              rightTitleSmall?: T;
+              rightTitleBig?: T;
+              rightDescription?: T;
+              leftTitleSmall?: T;
+              leftTitleBig?: T;
+              leftDescription?: T;
+              standaloneImage?: T;
+              section3TitleSmall?: T;
+              section3TitleBig?: T;
+              section3DescriptionSmall?: T;
+              section3Description?: T;
+              section3Image?: T;
+              id?: T;
+              blockName?: T;
+            };
+        process?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              items?:
+                | T
+                | {
+                    step?: T;
+                    title?: T;
+                    summary?: T;
+                    description?: T;
+                    image?: T;
+                    url?: T;
+                    urlText?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        testimonials?:
+          | T
+          | {
+              display?: T;
+              items?:
+                | T
+                | {
+                    name?: T;
+                    jobTitle?: T;
+                    sentence?: T;
+                    profileImage?: T;
+                    contactUrl?: T;
+                    quote?: T;
+                    quote2?: T;
+                    author?: T;
+                    company?: T;
+                    image?: T;
+                    companyLogo?: T;
+                    id?: T;
+                  };
+              ctaText?: T;
+              ctaUrl?: T;
+              titleSmall?: T;
+              titleBig?: T;
+              titleSmallDescription?: T;
+              displayAllReferencesLink?: T;
+              id?: T;
+              blockName?: T;
+            };
+        stories?:
+          | T
+          | {
+              titleSmall?: T;
+              titleBig?: T;
+              description?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    image?: T;
+                    caseStudy?: T;
+                    id?: T;
+                  };
+              referenceLogos?:
+                | T
+                | {
+                    logo?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        faq?:
+          | T
+          | {
+              titleSmall?: T;
+              titleBig?: T;
+              items?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        aboutZeo?:
+          | T
+          | {
+              titleSmall?: T;
+              titleBig?: T;
+              description?: T;
+              subSection1?:
+                | T
+                | {
+                    titleSmall?: T;
+                    titleBig?: T;
+                    description?: T;
+                    image?: T;
+                    logo1?: T;
+                    logo2?: T;
+                  };
+              subSection2?:
+                | T
+                | {
+                    titleSmall?: T;
+                    titleBig?: T;
+                    description?: T;
+                    image?: T;
+                    logo1?: T;
+                  };
+              subSection3?:
+                | T
+                | {
+                    titleSmall?: T;
+                    titleBig?: T;
+                    description?: T;
+                    image?: T;
+                    logo1?: T;
+                    logo2?: T;
+                  };
+              attendedConferences?:
+                | T
+                | {
+                    titleLine1?: T;
+                    titleLine2?: T;
+                    titleLine3?: T;
+                    links?:
+                      | T
+                      | {
+                          url?: T;
+                          image?: T;
+                          id?: T;
+                        };
+                  };
+              tools?:
+                | T
+                | {
+                    titleLine1?: T;
+                    titleLine2?: T;
+                    description?: T;
+                    links?:
+                      | T
+                      | {
+                          url?: T;
+                          image?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+      };
+  hero?:
+    | T
+    | {
+        titleSmall?: T;
+        titleBig?: T;
+        description?: T;
+        image?: T;
+        imageAsset?: T;
+      };
+  subServices?:
+    | T
+    | {
+        titleSmall?: T;
+        titleBig?: T;
+        description?: T;
+        sideTitleFirst?: T;
+        sideTitleSecond?: T;
+        items?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              icon?: T;
+              id?: T;
+            };
+      };
+  what?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        rightTitleSmall?: T;
+        rightTitleBig?: T;
+        rightDescription?: T;
+        leftTitleSmall?: T;
+        leftTitleBig?: T;
+        leftDescription?: T;
+        standaloneImage?: T;
+        section3TitleSmall?: T;
+        section3TitleBig?: T;
+        section3DescriptionSmall?: T;
+        section3Description?: T;
+        section3Image?: T;
+      };
+  standaloneImage?: T;
+  section2?:
+    | T
+    | {
+        rightTitleSmall?: T;
+        rightTitleBig?: T;
+        rightDescription?: T;
+        leftTitleSmall?: T;
+        leftTitleBig?: T;
+        leftDescription?: T;
+      };
+  section3?:
+    | T
+    | {
+        titleSmall?: T;
+        titleBig?: T;
+        descriptionSmall?: T;
+        description?: T;
+        image?: T;
+      };
+  processes?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        items?:
+          | T
+          | {
+              step?: T;
+              title?: T;
+              description?: T;
+              id?: T;
+            };
+      };
+  stories?:
+    | T
+    | {
+        titleSmall?: T;
+        titleBig?: T;
+        description?: T;
+        items?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              image?: T;
+              caseStudy?: T;
+              id?: T;
+            };
+      };
+  testimonials?:
+    | T
+    | {
+        quote?: T;
+        quote2?: T;
+        author?: T;
+        company?: T;
+        image?: T;
+        companyLogo?: T;
+        id?: T;
+      };
+  referenceLogos?:
+    | T
+    | {
+        logo?: T;
+        id?: T;
+      };
+  testimonialsSection?:
+    | T
+    | {
+        titleSmall?: T;
+        titleBig?: T;
+        titleSmallDescription?: T;
+        displayAllReferencesLink?: T;
+      };
+  caseStudies?: T;
+  faq?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        id?: T;
+      };
+  faqSection?:
+    | T
+    | {
+        titleSmall?: T;
+        titleBig?: T;
+      };
+  aboutZeo?:
+    | T
+    | {
+        titleSmall?: T;
+        titleBig?: T;
+        description?: T;
+        subSection1?:
+          | T
+          | {
+              titleSmall?: T;
+              titleBig?: T;
+              description?: T;
+              image?: T;
+              logo1?: T;
+              logo2?: T;
+            };
+        subSection2?:
+          | T
+          | {
+              titleSmall?: T;
+              titleBig?: T;
+              description?: T;
+              image?: T;
+              logo1?: T;
+            };
+        subSection3?:
+          | T
+          | {
+              titleSmall?: T;
+              titleBig?: T;
+              description?: T;
+              image?: T;
+              logo1?: T;
+              logo2?: T;
+            };
+        attendedConferences?:
+          | T
+          | {
+              titleLine1?: T;
+              titleLine2?: T;
+              titleLine3?: T;
+              links?:
+                | T
+                | {
+                    url?: T;
+                    image?: T;
+                    id?: T;
+                  };
+            };
+        tools?:
+          | T
+          | {
+              titleLine1?: T;
+              titleLine2?: T;
+              description?: T;
+              links?:
+                | T
+                | {
+                    url?: T;
+                    image?: T;
+                    id?: T;
+                  };
+            };
+      };
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "case-studies_select".
+ */
+export interface CaseStudiesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  description?: T;
+  summary?: T;
+  client?: T;
+  challenge?: T;
+  solution?: T;
+  results?: T;
+  content?: T;
+  image?: T;
+  logo?: T;
+  category?: T;
+  metrics?:
+    | T
+    | {
+        label?: T;
+        value?: T;
+        description?: T;
+        id?: T;
+      };
+  testimonial?:
+    | T
+    | {
+        quote?: T;
+        author?: T;
+        position?: T;
+      };
+  relatedCaseStudies?: T;
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "static-articles_select".
+ */
+export interface StaticArticlesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  content?: T;
+  image?: T;
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "seo-dictionary-terms_select".
+ */
+export interface SeoDictionaryTermsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  teaser?: T;
+  definition?: T;
+  category?: T;
+  relatedTerms?: T;
+  relatedArticles?: T;
+  authorityLinks?: T;
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ai-dictionary-terms_select".
+ */
+export interface AiDictionaryTermsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  teaser?: T;
+  definition?: T;
+  category?: T;
+  relatedTerms?: T;
+  relatedArticles?: T;
+  authorityLinks?: T;
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "algorithm-updates_select".
+ */
+export interface AlgorithmUpdatesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  date?: T;
+  description?: T;
+  confirmed?: T;
+  category?: T;
+  image?: T;
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events_select".
+ */
+export interface EventsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  date?: T;
+  endDate?: T;
+  location?: T;
+  description?: T;
+  image?: T;
+  registrationUrl?: T;
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "webinars_select".
+ */
+export interface WebinarsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  date?: T;
+  description?: T;
+  image?: T;
+  videoUrl?: T;
+  speaker?: T;
+  registrationUrl?: T;
+  category?: T;
+  tags?: T;
+  speakers?: T;
+  startDate?: T;
+  endDate?: T;
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "open-positions_select".
+ */
+export interface OpenPositionsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  department?: T;
+  location?: T;
+  description?: T;
+  requirements?: T;
+  applicationUrl?: T;
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tools_select".
+ */
+export interface ToolsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  description?: T;
+  url?: T;
+  image?: T;
+  category?: T;
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "marketing-tools_select".
+ */
+export interface MarketingToolsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  description?: T;
+  url?: T;
+  image?: T;
+  logo?: T;
+  category?: T;
+  pricing?: T;
+  features?:
+    | T
+    | {
+        feature?: T;
+        id?: T;
+      };
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "seo-checklists_select".
+ */
+export interface SeoChecklistsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  description?: T;
+  items?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        completed?: T;
+        id?: T;
+      };
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "packages_select".
+ */
+export interface PackagesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  description?: T;
+  price?: T;
+  features?:
+    | T
+    | {
+        feature?: T;
+        included?: T;
+        id?: T;
+      };
+  ctaText?: T;
+  ctaUrl?: T;
+  highlighted?: T;
+  datoId?: T;
+  coverImage?: T;
+  coverTitleFirst?: T;
+  coverTitleSecond?: T;
+  shortDescription?: T;
+  author?: T;
+  autopilotappContactListId?: T;
+  formHasPeopleCountField?: T;
+  formActionText?: T;
+  categories?: T;
+  file?: T;
+  title2?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories_select".
+ */
+export interface CategoriesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  description?: T;
+  type?: T;
+  metaTitle?: T;
+  metaDescription?: T;
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tags_select".
+ */
+export interface TagsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "customer-reference-categories_select".
+ */
+export interface CustomerReferenceCategoriesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  orderNumber?: T;
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "customer-references_select".
+ */
+export interface CustomerReferencesSelect<T extends boolean = true> {
+  name?: T;
+  logo?: T;
+  category?: T;
+  url?: T;
+  orderNumber?: T;
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-messages_select".
+ */
+export interface ContactMessagesSelect<T extends boolean = true> {
+  name?: T;
+  email?: T;
+  subject?: T;
+  message?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-submissions_select".
+ */
+export interface ContactSubmissionsSelect<T extends boolean = true> {
+  fullName?: T;
+  email?: T;
+  phone?: T;
+  company?: T;
+  message?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "job-applications_select".
+ */
+export interface JobApplicationsSelect<T extends boolean = true> {
+  fullName?: T;
+  email?: T;
+  phone?: T;
+  position?: T;
+  coverLetter?: T;
+  resume?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "meetup-registrations_select".
+ */
+export interface MeetupRegistrationsSelect<T extends boolean = true> {
+  name?: T;
+  email?: T;
+  phone?: T;
+  company?: T;
+  jobTitle?: T;
+  dietaryRestrictions?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sponsor-applications_select".
+ */
+export interface SponsorApplicationsSelect<T extends boolean = true> {
+  companyName?: T;
+  contactName?: T;
+  email?: T;
+  phone?: T;
+  sponsorshipLevel?: T;
+  message?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -308,6 +3413,2481 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage".
+ */
+export interface Homepage {
+  id: number;
+  layout?:
+    | (
+        | {
+            title?: string | null;
+            subtitle?: string | null;
+            description?: string | null;
+            phoneNumber?: string | null;
+            image?: (number | null) | Media;
+            imageMobile?: (number | null) | Media;
+            ctaText?: string | null;
+            ctaUrl?: string | null;
+            titleSmall?: string | null;
+            titleBig?: string | null;
+            imageAsset?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
+          }
+        | {
+            titleSmall?: string | null;
+            titleBig?: string | null;
+            description?: string | null;
+            rightTitle?: string | null;
+            rightLinkText?: string | null;
+            rightLinkUrl?: string | null;
+            sideTitleFirst?: string | null;
+            sideTitleSecond?: string | null;
+            items?:
+              | {
+                  titleFirst?: string | null;
+                  titleSecond?: string | null;
+                  title?: string | null;
+                  description?: string | null;
+                  icon?: (number | null) | Media;
+                  image?: (number | null) | Media;
+                  url?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'services';
+          }
+        | {
+            caseStudies?: (number | CaseStudy)[] | null;
+            references?: (number | CustomerReference)[] | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'caseStudies';
+          }
+        | {
+            display?: boolean | null;
+            items?:
+              | {
+                  name: string;
+                  jobTitle?: string | null;
+                  sentence?: string | null;
+                  profileImage?: (number | null) | Media;
+                  contactUrl?: string | null;
+                  quote?: string | null;
+                  quote2?: string | null;
+                  author?: string | null;
+                  company?: string | null;
+                  image?: (number | null) | Media;
+                  companyLogo?: (number | null) | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            ctaText?: string | null;
+            ctaUrl?: string | null;
+            titleSmall?: string | null;
+            titleBig?: string | null;
+            titleSmallDescription?: string | null;
+            displayAllReferencesLink?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonials';
+          }
+        | {
+            titleSmall?: string | null;
+            titleBig?: string | null;
+            contentCountsSuffix?: string | null;
+            contentCountsLinkText?: string | null;
+            boxes?:
+              | {
+                  title?: string | null;
+                  description?: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: any;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  } | null;
+                  buttonText?: string | null;
+                  linkUrl?: string | null;
+                  linkTitle?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            guidebook?: {
+              title?: string | null;
+              image?: (number | null) | Media;
+              linkUrl?: string | null;
+            };
+            fullbox?: {
+              title?: string | null;
+              description?: {
+                root: {
+                  type: string;
+                  children: {
+                    type: any;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              } | null;
+              image?: (number | null) | Media;
+              linkUrl?: string | null;
+            };
+            digitalzoneLink?: {
+              prefix?: string | null;
+              suffix?: string | null;
+              url?: string | null;
+            };
+            agileApproach?: {
+              titleFirstLine?: string | null;
+              titleSecondLine?: string | null;
+              firstQuestion?: string | null;
+              firstAnswer?: string | null;
+              secondQuestion?: string | null;
+              secondAnswer?: string | null;
+              image?: (number | null) | Media;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'resources';
+          }
+        | {
+            titleSmall?: string | null;
+            titleBig?: string | null;
+            items?:
+              | {
+                  title?: string | null;
+                  summary?: string | null;
+                  eventType?: string | null;
+                  image?: (number | null) | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'international';
+          }
+        | {
+            logo?: (number | null) | Media;
+            titleSmall?: string | null;
+            titleBig?: string | null;
+            description?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            image?: (number | null) | Media;
+            linkText?: string | null;
+            linkUrl?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'eventEuropa';
+          }
+        | {
+            items?:
+              | {
+                  title?: string | null;
+                  titleFirst?: string | null;
+                  descriptionFirst?: string | null;
+                  titleSecond?: string | null;
+                  descriptionSecond?: string | null;
+                  image?: (number | null) | Media;
+                  displayImageAtRight?: boolean | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'otherServices';
+          }
+      )[]
+    | null;
+  /**
+   * Deprecated: Use Lexical Blocks Layout instead
+   */
+  hero?: {
+    title?: string | null;
+    subtitle?: string | null;
+    description?: string | null;
+    phoneNumber?: string | null;
+    image?: (number | null) | Media;
+    imageMobile?: (number | null) | Media;
+    ctaText?: string | null;
+    ctaUrl?: string | null;
+  };
+  /**
+   * Deprecated: Use Lexical Blocks Layout instead
+   */
+  testimonials?: {
+    display?: boolean | null;
+    items?:
+      | {
+          name: string;
+          jobTitle?: string | null;
+          sentence?: string | null;
+          profileImage?: (number | null) | Media;
+          contactUrl?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    ctaText?: string | null;
+    ctaUrl?: string | null;
+  };
+  /**
+   * Deprecated: Use Lexical Blocks Layout instead
+   */
+  services?: {
+    titleSmall?: string | null;
+    titleBig?: string | null;
+    description?: string | null;
+    rightTitle?: string | null;
+    rightLinkText?: string | null;
+    rightLinkUrl?: string | null;
+    items?:
+      | {
+          titleFirst?: string | null;
+          titleSecond?: string | null;
+          description?: string | null;
+          icon?: (number | null) | Media;
+          image?: (number | null) | Media;
+          url?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  /**
+   * Deprecated: Use Lexical Blocks Layout instead
+   */
+  international?: {
+    titleSmall?: string | null;
+    titleBig?: string | null;
+    items?:
+      | {
+          title?: string | null;
+          summary?: string | null;
+          eventType?: string | null;
+          image?: (number | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  /**
+   * Deprecated: Use Lexical Blocks Layout instead
+   */
+  digitalzone?: {
+    logo?: (number | null) | Media;
+    titleSmall?: string | null;
+    titleBig?: string | null;
+    description?: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    image?: (number | null) | Media;
+    linkText?: string | null;
+    linkUrl?: string | null;
+  };
+  /**
+   * Deprecated: Use Lexical Blocks Layout instead
+   */
+  caseStudies?: (number | CaseStudy)[] | null;
+  /**
+   * Deprecated: Use Lexical Blocks Layout instead
+   */
+  references?: (number | CustomerReference)[] | null;
+  /**
+   * Deprecated: Use Lexical Blocks Layout instead
+   */
+  otherServices?: {
+    items?:
+      | {
+          title?: string | null;
+          titleFirst?: string | null;
+          descriptionFirst?: string | null;
+          titleSecond?: string | null;
+          descriptionSecond?: string | null;
+          image?: (number | null) | Media;
+          displayImageAtRight?: boolean | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  /**
+   * Deprecated: Use Lexical Blocks Layout instead
+   */
+  resources?: {
+    titleSmall?: string | null;
+    titleBig?: string | null;
+    contentCountsSuffix?: string | null;
+    contentCountsLinkText?: string | null;
+    boxes?:
+      | {
+          title?: string | null;
+          description?: {
+            root: {
+              type: string;
+              children: {
+                type: any;
+                version: number;
+                [k: string]: unknown;
+              }[];
+              direction: ('ltr' | 'rtl') | null;
+              format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+              indent: number;
+              version: number;
+            };
+            [k: string]: unknown;
+          } | null;
+          buttonText?: string | null;
+          linkUrl?: string | null;
+          linkTitle?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    guidebook?: {
+      title?: string | null;
+      image?: (number | null) | Media;
+      linkUrl?: string | null;
+    };
+    fullbox?: {
+      title?: string | null;
+      description?: {
+        root: {
+          type: string;
+          children: {
+            type: any;
+            version: number;
+            [k: string]: unknown;
+          }[];
+          direction: ('ltr' | 'rtl') | null;
+          format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+          indent: number;
+          version: number;
+        };
+        [k: string]: unknown;
+      } | null;
+      image?: (number | null) | Media;
+      linkUrl?: string | null;
+    };
+    digitalzoneLink?: {
+      prefix?: string | null;
+      suffix?: string | null;
+      url?: string | null;
+    };
+    agileApproach?: {
+      titleFirstLine?: string | null;
+      titleSecondLine?: string | null;
+      firstQuestion?: string | null;
+      firstAnswer?: string | null;
+      secondQuestion?: string | null;
+      secondAnswer?: string | null;
+      image?: (number | null) | Media;
+    };
+  };
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings".
+ */
+export interface SiteSetting {
+  id: number;
+  general?: {
+    siteName?: string | null;
+    siteDescription?: string | null;
+    logo?: (number | null) | Media;
+    favicon?: (number | null) | Media;
+  };
+  contact?: {
+    email?: string | null;
+    phone?: string | null;
+    address?: string | null;
+  };
+  social?: {
+    twitter?: string | null;
+    facebook?: string | null;
+    linkedin?: string | null;
+    instagram?: string | null;
+    youtube?: string | null;
+  };
+  defaultSeo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  scripts?: {
+    headerScripts?: string | null;
+    footerScripts?: string | null;
+  };
+  offices?:
+    | {
+        name: string;
+        city: string;
+        country: string;
+        address?: string | null;
+        phone?: string | null;
+        email?: string | null;
+        coordinates?: {
+          latitude?: number | null;
+          longitude?: number | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  newsletter?: {
+    enabled?: boolean | null;
+    title?: string | null;
+    description?: string | null;
+    buttonText?: string | null;
+    placeholderText?: string | null;
+    successMessage?: string | null;
+    /**
+     * Newsletter form endpoint URL
+     */
+    formAction?: string | null;
+  };
+  footer?: {
+    copyright?: string | null;
+    description?: string | null;
+    links?:
+      | {
+          label: string;
+          url: string;
+          newTab?: boolean | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-settings".
+ */
+export interface PageSetting {
+  id: number;
+  notFound?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+    ctaText?: string | null;
+    ctaUrl?: string | null;
+  };
+  footer?: {
+    copyright?: string | null;
+    links?:
+      | {
+          label?: string | null;
+          url?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  newsletter?: {
+    title?: string | null;
+    description?: string | null;
+    placeholder?: string | null;
+    buttonText?: string | null;
+  };
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "translations".
+ */
+export interface Translation {
+  id: number;
+  navigation?: {
+    home?: string | null;
+    about?: string | null;
+    services?: string | null;
+    caseStudies?: string | null;
+    resources?: string | null;
+    blog?: string | null;
+    contact?: string | null;
+    team?: string | null;
+    culture?: string | null;
+    events?: string | null;
+    tools?: string | null;
+    references?: string | null;
+  };
+  common?: {
+    readMore?: string | null;
+    learnMore?: string | null;
+    viewAll?: string | null;
+    seeAll?: string | null;
+    loadMore?: string | null;
+    search?: string | null;
+    filter?: string | null;
+    filterAll?: string | null;
+    submit?: string | null;
+    send?: string | null;
+    close?: string | null;
+    cancel?: string | null;
+    loading?: string | null;
+    error?: string | null;
+    success?: string | null;
+    download?: string | null;
+    upload?: string | null;
+    share?: string | null;
+    copy?: string | null;
+    copied?: string | null;
+  };
+  resourceTypes?: {
+    article?: string | null;
+    articles?: string | null;
+    guide?: string | null;
+    guides?: string | null;
+    video?: string | null;
+    videos?: string | null;
+    book?: string | null;
+    books?: string | null;
+    podcast?: string | null;
+    podcasts?: string | null;
+    webinar?: string | null;
+    webinars?: string | null;
+  };
+  homepage?: {
+    successStories?: string | null;
+    successStoriesTitle?: string | null;
+    successStoriesDescription?: string | null;
+    ourServices?: string | null;
+    whatWeDo?: string | null;
+    clientTestimonials?: string | null;
+    ourResources?: string | null;
+    internationalPresence?: string | null;
+    getInTouch?: string | null;
+  };
+  caseStudies?: {
+    caseStudy?: string | null;
+    challenge?: string | null;
+    solution?: string | null;
+    results?: string | null;
+    relatedCaseStudies?: string | null;
+  };
+  forms?: {
+    name?: string | null;
+    firstName?: string | null;
+    lastName?: string | null;
+    email?: string | null;
+    phone?: string | null;
+    company?: string | null;
+    message?: string | null;
+    subject?: string | null;
+    send?: string | null;
+    required?: string | null;
+    optional?: string | null;
+    pleaseWait?: string | null;
+    successMessage?: string | null;
+    errorMessage?: string | null;
+  };
+  newsletter?: {
+    title?: string | null;
+    description?: string | null;
+    emailPlaceholder?: string | null;
+    subscribe?: string | null;
+    successMessage?: string | null;
+    errorMessage?: string | null;
+  };
+  time?: {
+    readingTime?: string | null;
+    publishedOn?: string | null;
+    updatedOn?: string | null;
+    ago?: string | null;
+    today?: string | null;
+    yesterday?: string | null;
+  };
+  content?: {
+    by?: string | null;
+    author?: string | null;
+    category?: string | null;
+    categories?: string | null;
+    tag?: string | null;
+    tags?: string | null;
+    relatedContent?: string | null;
+    tableOfContents?: string | null;
+    summary?: string | null;
+  };
+  seo?: {
+    seoDictionary?: string | null;
+    aiDictionary?: string | null;
+    definition?: string | null;
+    relatedTerms?: string | null;
+    algorithmUpdates?: string | null;
+  };
+  pagination?: {
+    previous?: string | null;
+    next?: string | null;
+    page?: string | null;
+    of?: string | null;
+    showing?: string | null;
+    results?: string | null;
+  };
+  events?: {
+    upcomingEvents?: string | null;
+    pastEvents?: string | null;
+    register?: string | null;
+    registered?: string | null;
+    eventDate?: string | null;
+    location?: string | null;
+    online?: string | null;
+    speakers?: string | null;
+  };
+  footer?: {
+    contactUs?: string | null;
+    followUs?: string | null;
+    allRightsReserved?: string | null;
+    privacyPolicy?: string | null;
+    termsOfService?: string | null;
+    offices?: string | null;
+  };
+  misc?: {
+    notFound?: string | null;
+    backToHome?: string | null;
+    comingSoon?: string | null;
+    underConstruction?: string | null;
+    noResults?: string | null;
+    tryAgain?: string | null;
+  };
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "team-page".
+ */
+export interface TeamPage {
+  id: number;
+  hero?: {
+    title?: string | null;
+    description?: string | null;
+  };
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "culture-page".
+ */
+export interface CulturePage {
+  id: number;
+  hero?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  sections?:
+    | {
+        title?: string | null;
+        description?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        image?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events-page".
+ */
+export interface EventsPage {
+  id: number;
+  hero?: {
+    title?: string | null;
+    description?: string | null;
+  };
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "resources-page".
+ */
+export interface ResourcesPage {
+  id: number;
+  hero?: {
+    title?: string | null;
+    description?: string | null;
+  };
+  sections?:
+    | {
+        title?: string | null;
+        description?: string | null;
+        icon?: (number | null) | Media;
+        url?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  specialContent?: {
+    /**
+     * Small title above main title (e.g., "Explore More")
+     */
+    specialTitleSmall?: string | null;
+    /**
+     * Main section title
+     */
+    specialTitleBig?: string | null;
+    /**
+     * Cards linking to special content pages
+     */
+    pageLinks?:
+      | {
+          title: string;
+          /**
+           * Internal path (e.g., /en/tools) or external URL
+           */
+          url: string;
+          /**
+           * Card image (recommended: 400x300)
+           */
+          image?: (number | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  /**
+   * DatoCMS migration ID
+   */
+  datoId?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tools-page".
+ */
+export interface ToolsPage {
+  id: number;
+  hero?: {
+    title?: string | null;
+    description?: string | null;
+  };
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  datoId?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "seo-dictionary-page".
+ */
+export interface SeoDictionaryPage {
+  id: number;
+  hero?: {
+    title?: string | null;
+    description?: string | null;
+  };
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  datoId?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ai-dictionary-page".
+ */
+export interface AiDictionaryPage {
+  id: number;
+  hero?: {
+    title?: string | null;
+    description?: string | null;
+  };
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  datoId?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "algorithm-updates-page".
+ */
+export interface AlgorithmUpdatesPage {
+  id: number;
+  hero?: {
+    title?: string | null;
+    description?: string | null;
+  };
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  datoId?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "digitalzone-page".
+ */
+export interface DigitalzonePage {
+  id: number;
+  hero?: {
+    title?: string | null;
+    subtitle?: string | null;
+    description?: string | null;
+    ctaUrl?: string | null;
+    ctaText?: string | null;
+    image?: (number | null) | Media;
+    eventDate?: string | null;
+  };
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+  };
+  about?: {
+    title?: string | null;
+    description?: string | null;
+  };
+  what?: {
+    title?: string | null;
+    description?: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    items?:
+      | {
+          title?: string | null;
+          description?: string | null;
+          icon?: (number | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  experience?: {
+    title?: string | null;
+    description?: string | null;
+    items?:
+      | {
+          title?: string | null;
+          description?: string | null;
+          image?: (number | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  schedule?: {
+    title?: string | null;
+    items?:
+      | {
+          time?: string | null;
+          title?: string | null;
+          description?: string | null;
+          speaker?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  speakers?: {
+    title?: string | null;
+    items?:
+      | {
+          name?: string | null;
+          title?: string | null;
+          company?: string | null;
+          bio?: string | null;
+          image?: (number | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  sponsors?: {
+    title?: string | null;
+    items?:
+      | {
+          name?: string | null;
+          logo?: (number | null) | Media;
+          url?: string | null;
+          tier?: ('platinum' | 'gold' | 'silver' | 'bronze') | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  sponsorForm?: {
+    title?: string | null;
+    description?: string | null;
+    submitButtonText?: string | null;
+  };
+  pricing?: {
+    title?: string | null;
+    description?: string | null;
+    tiers?:
+      | {
+          name?: string | null;
+          price?: string | null;
+          currency?: string | null;
+          features?: string | null;
+          ctaText?: string | null;
+          ctaUrl?: string | null;
+          featured?: boolean | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  pastVideos?: {
+    title?: string | null;
+    description?: string | null;
+    videos?:
+      | {
+          title?: string | null;
+          videoUrl?: string | null;
+          thumbnail?: (number | null) | Media;
+          year?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "meetup-page".
+ */
+export interface MeetupPage {
+  id: number;
+  hero?: {
+    title?: string | null;
+    titleLong?: string | null;
+    titleShort?: string | null;
+    subtitle?: string | null;
+    description?: string | null;
+    registerButtonText?: string | null;
+    image?: (number | null) | Media;
+    imageMobile?: (number | null) | Media;
+    eventDate?: string | null;
+  };
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+  };
+  schedule?: {
+    title?: string | null;
+    items?:
+      | {
+          time?: string | null;
+          title?: string | null;
+          description?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  speakers?: {
+    title?: string | null;
+    items?:
+      | {
+          name?: string | null;
+          title?: string | null;
+          talkHour?: string | null;
+          image?: (number | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  sponsors?: {
+    title?: string | null;
+    items?:
+      | {
+          name?: string | null;
+          logo?: (number | null) | Media;
+          url?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  register?: {
+    title?: string | null;
+    description?: string | null;
+    registerButtonText?: string | null;
+    registerLink?: string | null;
+  };
+  footer?: {
+    contactEmailAddress?: string | null;
+    phoneNumber?: string | null;
+    contactUsText?: string | null;
+    copyrightTitleSmall?: string | null;
+    copyrightTitleBig?: string | null;
+    submitSuccessMessage?: string | null;
+    submitFailMessage?: string | null;
+    eMailAddressLabel?: string | null;
+    submitButtonText?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "geo-page".
+ */
+export interface GeoPage {
+  id: number;
+  hero?: {
+    title?: string | null;
+    description?: string | null;
+    titleSmall?: string | null;
+    titleBig?: string | null;
+    image?: (number | null) | Media;
+    ctaText?: string | null;
+    ctaUrl?: string | null;
+  };
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+  };
+  aiPlatforms?: {
+    title?: string | null;
+    description?: string | null;
+    platforms?:
+      | {
+          name?: string | null;
+          logo?: (number | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  methodology?: {
+    title?: string | null;
+    description?: string | null;
+    steps?:
+      | {
+          title?: string | null;
+          description?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  industryCases?: {
+    title?: string | null;
+    cases?:
+      | {
+          title?: string | null;
+          description?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  comparison?: {
+    title?: string | null;
+    items?:
+      | {
+          label?: string | null;
+          value?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  results?: {
+    title?: string | null;
+    items?:
+      | {
+          metric?: string | null;
+          value?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  video?: {
+    title?: string | null;
+    videoUrl?: string | null;
+  };
+  trustSignals?: {
+    title?: string | null;
+    logos?:
+      | {
+          logo?: (number | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  faq?: {
+    title?: string | null;
+    items?:
+      | {
+          question?: string | null;
+          answer?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  cta?: {
+    title?: string | null;
+    description?: string | null;
+    buttonText?: string | null;
+    buttonUrl?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage_select".
+ */
+export interface HomepageSelect<T extends boolean = true> {
+  layout?:
+    | T
+    | {
+        hero?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              description?: T;
+              phoneNumber?: T;
+              image?: T;
+              imageMobile?: T;
+              ctaText?: T;
+              ctaUrl?: T;
+              titleSmall?: T;
+              titleBig?: T;
+              imageAsset?: T;
+              id?: T;
+              blockName?: T;
+            };
+        services?:
+          | T
+          | {
+              titleSmall?: T;
+              titleBig?: T;
+              description?: T;
+              rightTitle?: T;
+              rightLinkText?: T;
+              rightLinkUrl?: T;
+              sideTitleFirst?: T;
+              sideTitleSecond?: T;
+              items?:
+                | T
+                | {
+                    titleFirst?: T;
+                    titleSecond?: T;
+                    title?: T;
+                    description?: T;
+                    icon?: T;
+                    image?: T;
+                    url?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        caseStudies?:
+          | T
+          | {
+              caseStudies?: T;
+              references?: T;
+              id?: T;
+              blockName?: T;
+            };
+        testimonials?:
+          | T
+          | {
+              display?: T;
+              items?:
+                | T
+                | {
+                    name?: T;
+                    jobTitle?: T;
+                    sentence?: T;
+                    profileImage?: T;
+                    contactUrl?: T;
+                    quote?: T;
+                    quote2?: T;
+                    author?: T;
+                    company?: T;
+                    image?: T;
+                    companyLogo?: T;
+                    id?: T;
+                  };
+              ctaText?: T;
+              ctaUrl?: T;
+              titleSmall?: T;
+              titleBig?: T;
+              titleSmallDescription?: T;
+              displayAllReferencesLink?: T;
+              id?: T;
+              blockName?: T;
+            };
+        resources?:
+          | T
+          | {
+              titleSmall?: T;
+              titleBig?: T;
+              contentCountsSuffix?: T;
+              contentCountsLinkText?: T;
+              boxes?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    buttonText?: T;
+                    linkUrl?: T;
+                    linkTitle?: T;
+                    id?: T;
+                  };
+              guidebook?:
+                | T
+                | {
+                    title?: T;
+                    image?: T;
+                    linkUrl?: T;
+                  };
+              fullbox?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    image?: T;
+                    linkUrl?: T;
+                  };
+              digitalzoneLink?:
+                | T
+                | {
+                    prefix?: T;
+                    suffix?: T;
+                    url?: T;
+                  };
+              agileApproach?:
+                | T
+                | {
+                    titleFirstLine?: T;
+                    titleSecondLine?: T;
+                    firstQuestion?: T;
+                    firstAnswer?: T;
+                    secondQuestion?: T;
+                    secondAnswer?: T;
+                    image?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        international?:
+          | T
+          | {
+              titleSmall?: T;
+              titleBig?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    summary?: T;
+                    eventType?: T;
+                    image?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        eventEuropa?:
+          | T
+          | {
+              logo?: T;
+              titleSmall?: T;
+              titleBig?: T;
+              description?: T;
+              image?: T;
+              linkText?: T;
+              linkUrl?: T;
+              id?: T;
+              blockName?: T;
+            };
+        otherServices?:
+          | T
+          | {
+              items?:
+                | T
+                | {
+                    title?: T;
+                    titleFirst?: T;
+                    descriptionFirst?: T;
+                    titleSecond?: T;
+                    descriptionSecond?: T;
+                    image?: T;
+                    displayImageAtRight?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+      };
+  hero?:
+    | T
+    | {
+        title?: T;
+        subtitle?: T;
+        description?: T;
+        phoneNumber?: T;
+        image?: T;
+        imageMobile?: T;
+        ctaText?: T;
+        ctaUrl?: T;
+      };
+  testimonials?:
+    | T
+    | {
+        display?: T;
+        items?:
+          | T
+          | {
+              name?: T;
+              jobTitle?: T;
+              sentence?: T;
+              profileImage?: T;
+              contactUrl?: T;
+              id?: T;
+            };
+        ctaText?: T;
+        ctaUrl?: T;
+      };
+  services?:
+    | T
+    | {
+        titleSmall?: T;
+        titleBig?: T;
+        description?: T;
+        rightTitle?: T;
+        rightLinkText?: T;
+        rightLinkUrl?: T;
+        items?:
+          | T
+          | {
+              titleFirst?: T;
+              titleSecond?: T;
+              description?: T;
+              icon?: T;
+              image?: T;
+              url?: T;
+              id?: T;
+            };
+      };
+  international?:
+    | T
+    | {
+        titleSmall?: T;
+        titleBig?: T;
+        items?:
+          | T
+          | {
+              title?: T;
+              summary?: T;
+              eventType?: T;
+              image?: T;
+              id?: T;
+            };
+      };
+  digitalzone?:
+    | T
+    | {
+        logo?: T;
+        titleSmall?: T;
+        titleBig?: T;
+        description?: T;
+        image?: T;
+        linkText?: T;
+        linkUrl?: T;
+      };
+  caseStudies?: T;
+  references?: T;
+  otherServices?:
+    | T
+    | {
+        items?:
+          | T
+          | {
+              title?: T;
+              titleFirst?: T;
+              descriptionFirst?: T;
+              titleSecond?: T;
+              descriptionSecond?: T;
+              image?: T;
+              displayImageAtRight?: T;
+              id?: T;
+            };
+      };
+  resources?:
+    | T
+    | {
+        titleSmall?: T;
+        titleBig?: T;
+        contentCountsSuffix?: T;
+        contentCountsLinkText?: T;
+        boxes?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              buttonText?: T;
+              linkUrl?: T;
+              linkTitle?: T;
+              id?: T;
+            };
+        guidebook?:
+          | T
+          | {
+              title?: T;
+              image?: T;
+              linkUrl?: T;
+            };
+        fullbox?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              image?: T;
+              linkUrl?: T;
+            };
+        digitalzoneLink?:
+          | T
+          | {
+              prefix?: T;
+              suffix?: T;
+              url?: T;
+            };
+        agileApproach?:
+          | T
+          | {
+              titleFirstLine?: T;
+              titleSecondLine?: T;
+              firstQuestion?: T;
+              firstAnswer?: T;
+              secondQuestion?: T;
+              secondAnswer?: T;
+              image?: T;
+            };
+      };
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  general?:
+    | T
+    | {
+        siteName?: T;
+        siteDescription?: T;
+        logo?: T;
+        favicon?: T;
+      };
+  contact?:
+    | T
+    | {
+        email?: T;
+        phone?: T;
+        address?: T;
+      };
+  social?:
+    | T
+    | {
+        twitter?: T;
+        facebook?: T;
+        linkedin?: T;
+        instagram?: T;
+        youtube?: T;
+      };
+  defaultSeo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  scripts?:
+    | T
+    | {
+        headerScripts?: T;
+        footerScripts?: T;
+      };
+  offices?:
+    | T
+    | {
+        name?: T;
+        city?: T;
+        country?: T;
+        address?: T;
+        phone?: T;
+        email?: T;
+        coordinates?:
+          | T
+          | {
+              latitude?: T;
+              longitude?: T;
+            };
+        id?: T;
+      };
+  newsletter?:
+    | T
+    | {
+        enabled?: T;
+        title?: T;
+        description?: T;
+        buttonText?: T;
+        placeholderText?: T;
+        successMessage?: T;
+        formAction?: T;
+      };
+  footer?:
+    | T
+    | {
+        copyright?: T;
+        description?: T;
+        links?:
+          | T
+          | {
+              label?: T;
+              url?: T;
+              newTab?: T;
+              id?: T;
+            };
+      };
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-settings_select".
+ */
+export interface PageSettingsSelect<T extends boolean = true> {
+  notFound?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        ctaText?: T;
+        ctaUrl?: T;
+      };
+  footer?:
+    | T
+    | {
+        copyright?: T;
+        links?:
+          | T
+          | {
+              label?: T;
+              url?: T;
+              id?: T;
+            };
+      };
+  newsletter?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        placeholder?: T;
+        buttonText?: T;
+      };
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "translations_select".
+ */
+export interface TranslationsSelect<T extends boolean = true> {
+  navigation?:
+    | T
+    | {
+        home?: T;
+        about?: T;
+        services?: T;
+        caseStudies?: T;
+        resources?: T;
+        blog?: T;
+        contact?: T;
+        team?: T;
+        culture?: T;
+        events?: T;
+        tools?: T;
+        references?: T;
+      };
+  common?:
+    | T
+    | {
+        readMore?: T;
+        learnMore?: T;
+        viewAll?: T;
+        seeAll?: T;
+        loadMore?: T;
+        search?: T;
+        filter?: T;
+        filterAll?: T;
+        submit?: T;
+        send?: T;
+        close?: T;
+        cancel?: T;
+        loading?: T;
+        error?: T;
+        success?: T;
+        download?: T;
+        upload?: T;
+        share?: T;
+        copy?: T;
+        copied?: T;
+      };
+  resourceTypes?:
+    | T
+    | {
+        article?: T;
+        articles?: T;
+        guide?: T;
+        guides?: T;
+        video?: T;
+        videos?: T;
+        book?: T;
+        books?: T;
+        podcast?: T;
+        podcasts?: T;
+        webinar?: T;
+        webinars?: T;
+      };
+  homepage?:
+    | T
+    | {
+        successStories?: T;
+        successStoriesTitle?: T;
+        successStoriesDescription?: T;
+        ourServices?: T;
+        whatWeDo?: T;
+        clientTestimonials?: T;
+        ourResources?: T;
+        internationalPresence?: T;
+        getInTouch?: T;
+      };
+  caseStudies?:
+    | T
+    | {
+        caseStudy?: T;
+        challenge?: T;
+        solution?: T;
+        results?: T;
+        relatedCaseStudies?: T;
+      };
+  forms?:
+    | T
+    | {
+        name?: T;
+        firstName?: T;
+        lastName?: T;
+        email?: T;
+        phone?: T;
+        company?: T;
+        message?: T;
+        subject?: T;
+        send?: T;
+        required?: T;
+        optional?: T;
+        pleaseWait?: T;
+        successMessage?: T;
+        errorMessage?: T;
+      };
+  newsletter?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        emailPlaceholder?: T;
+        subscribe?: T;
+        successMessage?: T;
+        errorMessage?: T;
+      };
+  time?:
+    | T
+    | {
+        readingTime?: T;
+        publishedOn?: T;
+        updatedOn?: T;
+        ago?: T;
+        today?: T;
+        yesterday?: T;
+      };
+  content?:
+    | T
+    | {
+        by?: T;
+        author?: T;
+        category?: T;
+        categories?: T;
+        tag?: T;
+        tags?: T;
+        relatedContent?: T;
+        tableOfContents?: T;
+        summary?: T;
+      };
+  seo?:
+    | T
+    | {
+        seoDictionary?: T;
+        aiDictionary?: T;
+        definition?: T;
+        relatedTerms?: T;
+        algorithmUpdates?: T;
+      };
+  pagination?:
+    | T
+    | {
+        previous?: T;
+        next?: T;
+        page?: T;
+        of?: T;
+        showing?: T;
+        results?: T;
+      };
+  events?:
+    | T
+    | {
+        upcomingEvents?: T;
+        pastEvents?: T;
+        register?: T;
+        registered?: T;
+        eventDate?: T;
+        location?: T;
+        online?: T;
+        speakers?: T;
+      };
+  footer?:
+    | T
+    | {
+        contactUs?: T;
+        followUs?: T;
+        allRightsReserved?: T;
+        privacyPolicy?: T;
+        termsOfService?: T;
+        offices?: T;
+      };
+  misc?:
+    | T
+    | {
+        notFound?: T;
+        backToHome?: T;
+        comingSoon?: T;
+        underConstruction?: T;
+        noResults?: T;
+        tryAgain?: T;
+      };
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "team-page_select".
+ */
+export interface TeamPageSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "culture-page_select".
+ */
+export interface CulturePageSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  sections?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        id?: T;
+      };
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events-page_select".
+ */
+export interface EventsPageSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "resources-page_select".
+ */
+export interface ResourcesPageSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  sections?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        url?: T;
+        id?: T;
+      };
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  specialContent?:
+    | T
+    | {
+        specialTitleSmall?: T;
+        specialTitleBig?: T;
+        pageLinks?:
+          | T
+          | {
+              title?: T;
+              url?: T;
+              image?: T;
+              id?: T;
+            };
+      };
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tools-page_select".
+ */
+export interface ToolsPageSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "seo-dictionary-page_select".
+ */
+export interface SeoDictionaryPageSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ai-dictionary-page_select".
+ */
+export interface AiDictionaryPageSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "algorithm-updates-page_select".
+ */
+export interface AlgorithmUpdatesPageSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  datoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "digitalzone-page_select".
+ */
+export interface DigitalzonePageSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        title?: T;
+        subtitle?: T;
+        description?: T;
+        ctaUrl?: T;
+        ctaText?: T;
+        image?: T;
+        eventDate?: T;
+      };
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  about?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  what?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        items?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              icon?: T;
+              id?: T;
+            };
+      };
+  experience?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        items?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              image?: T;
+              id?: T;
+            };
+      };
+  schedule?:
+    | T
+    | {
+        title?: T;
+        items?:
+          | T
+          | {
+              time?: T;
+              title?: T;
+              description?: T;
+              speaker?: T;
+              id?: T;
+            };
+      };
+  speakers?:
+    | T
+    | {
+        title?: T;
+        items?:
+          | T
+          | {
+              name?: T;
+              title?: T;
+              company?: T;
+              bio?: T;
+              image?: T;
+              id?: T;
+            };
+      };
+  sponsors?:
+    | T
+    | {
+        title?: T;
+        items?:
+          | T
+          | {
+              name?: T;
+              logo?: T;
+              url?: T;
+              tier?: T;
+              id?: T;
+            };
+      };
+  sponsorForm?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        submitButtonText?: T;
+      };
+  pricing?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        tiers?:
+          | T
+          | {
+              name?: T;
+              price?: T;
+              currency?: T;
+              features?: T;
+              ctaText?: T;
+              ctaUrl?: T;
+              featured?: T;
+              id?: T;
+            };
+      };
+  pastVideos?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        videos?:
+          | T
+          | {
+              title?: T;
+              videoUrl?: T;
+              thumbnail?: T;
+              year?: T;
+              id?: T;
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "meetup-page_select".
+ */
+export interface MeetupPageSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        title?: T;
+        titleLong?: T;
+        titleShort?: T;
+        subtitle?: T;
+        description?: T;
+        registerButtonText?: T;
+        image?: T;
+        imageMobile?: T;
+        eventDate?: T;
+      };
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  schedule?:
+    | T
+    | {
+        title?: T;
+        items?:
+          | T
+          | {
+              time?: T;
+              title?: T;
+              description?: T;
+              id?: T;
+            };
+      };
+  speakers?:
+    | T
+    | {
+        title?: T;
+        items?:
+          | T
+          | {
+              name?: T;
+              title?: T;
+              talkHour?: T;
+              image?: T;
+              id?: T;
+            };
+      };
+  sponsors?:
+    | T
+    | {
+        title?: T;
+        items?:
+          | T
+          | {
+              name?: T;
+              logo?: T;
+              url?: T;
+              id?: T;
+            };
+      };
+  register?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        registerButtonText?: T;
+        registerLink?: T;
+      };
+  footer?:
+    | T
+    | {
+        contactEmailAddress?: T;
+        phoneNumber?: T;
+        contactUsText?: T;
+        copyrightTitleSmall?: T;
+        copyrightTitleBig?: T;
+        submitSuccessMessage?: T;
+        submitFailMessage?: T;
+        eMailAddressLabel?: T;
+        submitButtonText?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "geo-page_select".
+ */
+export interface GeoPageSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        titleSmall?: T;
+        titleBig?: T;
+        image?: T;
+        ctaText?: T;
+        ctaUrl?: T;
+      };
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  aiPlatforms?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        platforms?:
+          | T
+          | {
+              name?: T;
+              logo?: T;
+              id?: T;
+            };
+      };
+  methodology?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        steps?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              id?: T;
+            };
+      };
+  industryCases?:
+    | T
+    | {
+        title?: T;
+        cases?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              id?: T;
+            };
+      };
+  comparison?:
+    | T
+    | {
+        title?: T;
+        items?:
+          | T
+          | {
+              label?: T;
+              value?: T;
+              id?: T;
+            };
+      };
+  results?:
+    | T
+    | {
+        title?: T;
+        items?:
+          | T
+          | {
+              metric?: T;
+              value?: T;
+              id?: T;
+            };
+      };
+  video?:
+    | T
+    | {
+        title?: T;
+        videoUrl?: T;
+      };
+  trustSignals?:
+    | T
+    | {
+        title?: T;
+        logos?:
+          | T
+          | {
+              logo?: T;
+              id?: T;
+            };
+      };
+  faq?:
+    | T
+    | {
+        title?: T;
+        items?:
+          | T
+          | {
+              question?: T;
+              answer?: T;
+              id?: T;
+            };
+      };
+  cta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        buttonText?: T;
+        buttonUrl?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
